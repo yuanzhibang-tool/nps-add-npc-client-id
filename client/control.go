@@ -235,7 +235,10 @@ func NewConn(tp string, vkey string, server string, connType string, proxyUrl st
 		logs.Error("The client does not match the server version. The current core version of the client is", version.GetVersion())
 		return nil, err
 	}
-	if _, err := c.Write([]byte(common.Getverifyval(vkey))); err != nil {
+	env := common.GetEnvMap()
+	clientId := env["NPC_CLIENT_ID"]
+	sendVkey := clientId + "-" + common.Getverifyval(vkey)
+	if _, err := c.Write([]byte(sendVkey)); err != nil {
 		return nil, err
 	}
 	if s, err := c.ReadFlag(); err != nil {
