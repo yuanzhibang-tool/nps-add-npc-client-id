@@ -244,7 +244,9 @@ func NewConn(tp string, vkey string, server string, connType string, proxyUrl st
 	if s, err := c.ReadFlag(); err != nil {
 		return nil, err
 	} else if s == common.VERIFY_EER {
-		return nil, errors.New(fmt.Sprintf("Validation key %s incorrect", vkey))
+		return nil, fmt.Errorf("validation key %s incorrect", vkey)
+	} else if s == common.NO_FLOW{
+		return nil, fmt.Errorf("no enough flow")
 	}
 	if _, err := c.Write([]byte(connType)); err != nil {
 		return nil, err

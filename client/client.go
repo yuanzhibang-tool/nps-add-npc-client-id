@@ -63,7 +63,8 @@ retry:
 	c, err := NewConn(s.bridgeConnType, s.vKey, s.svrAddr, common.WORK_MAIN, s.proxyUrl)
 	if err != nil {
 			// logs.Error("The connection server failed and will be reconnected in five seconds, error", err.Error())
-			logs.Error("The connection server failed,please check if the host has enough flow, please try again or feedback to the developer, error", err.Error())
+			logs.Error("err: %v\n", err)
+			logs.Error("The connection server failed, please check if the host has enough flow, or your ip in blacklist, please try again or feedback to the developer!")
 			// !链接错误后退出重新连接
 			os.Exit(1)
 			// time.Sleep(time.Second * 5)
@@ -71,7 +72,7 @@ retry:
 	}
 	if c == nil {
 			// !链接错误后退出重新连接
-			logs.Error("Error data from server,please check if the host has enough flow, please try again or feedback to the developer, error")
+			logs.Error("The connection server failed, please check if the host has enough flow, or your ip in blacklist, please try again or feedback to the developer!")
 			os.Exit(1)
 			// logs.Error("Error data from server, and will be reconnected in five seconds")
 			// time.Sleep(time.Second * 5)

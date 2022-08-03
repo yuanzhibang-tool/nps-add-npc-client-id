@@ -4,6 +4,9 @@ const (
 	CONN_DATA_SEQ     = "*#*" //Separator
 	VERIFY_EER        = "vkey"
 	VERIFY_SUCCESS    = "sucs"
+	NEED_EXIT_ERROR    = "neer"
+	IN_BLACK_LIST = "inbl"
+	NO_FLOW = "nofl"
 	WORK_MAIN         = "main"
 	WORK_CHAN         = "chan"
 	WORK_CONFIG       = "conf"
