@@ -2,7 +2,7 @@
 
 rm -rf ./dist
 
-export VERSION=0.26.12
+export VERSION=0.26.13
 export GOPROXY=direct
 
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w -extldflags -static -extldflags -static" -o ./dist/npc/linux_amd64_client ./cmd/npc/npc.go
