@@ -1,0 +1,35 @@
+{
+    "name": "NPS-DEV",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "nps-dev",
+    "runServices": [
+        "nps-dev"
+    ],
+    "workspaceFolder": "/home/developer/NPS",
+    "overrideCommand": false,
+    // Set *default* container specific settings.json values on container create.
+    "settings": {
+        "terminal.integrated.profiles.linux": {
+            "zsh (login)": {
+                "path": "/bin/bash",
+                "args": [
+                    "-l"
+                ]
+            }
+        }
+    },
+    // Add the IDs of extensions you want installed when the container is created.
+    "extensions": [
+        "ms-azuretools.vscode-docker",
+        "formulahendry.code-runner",
+        "gruntfuggly.todo-tree",
+        "tabnine.tabnine-vscode",
+        "GitLab.gitlab-workflow"
+    ],
+    "shutdownAction": "stopCompose"
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    // "forwardPorts": [],
+    // Use 'postCreateCommand' to run commands after the container is created.
+    // "postCreateCommand": "docker --version",
+    // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+}

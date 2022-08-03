@@ -1,0 +1,12 @@
+{
+    "makefile.extensionOutputFolder": "./.vscode",
+    "go.inferGopath": false,
+    "go.toolsEnvVars": {
+        "GOPROXY": "https://goproxy.cn,direct",
+        "GONOPROXY": "none;"
+    },
+    "terminal.integrated.env.linux": {
+        "GOPROXY": "https://goproxy.cn,direct",
+        "GONOPROXY": "none;"
+    }
+}
