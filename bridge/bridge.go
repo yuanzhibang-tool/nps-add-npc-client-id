@@ -1,7 +1,6 @@
 package bridge
 
 import (
-	"ehang.io/nps-mux"
 	"encoding/binary"
 	"errors"
 	"fmt"
@@ -11,6 +10,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	nps_mux "ehang.io/nps-mux"
 
 	"ehang.io/nps/lib/common"
 	"ehang.io/nps/lib/conn"
@@ -193,7 +194,10 @@ func (s *Bridge) cliProcess(c *conn.Conn) {
 		return
 	}
 	//verify
-	id, err := file.GetDb().GetIdByVerifyKey(string(buf), c.Conn.RemoteAddr().String())
+	authInfo := crypt.PriDecryptString(buf)
+	authArray := strings.Split(authInfo, "-")
+	domainAuthKeyMd5 := authArray[1]
+	id, err := file.GetDb().GetIdByVerifyKey(domainAuthKeyMd5, c.Conn.RemoteAddr().String())
 	if err != nil {
 		logs.Info("Current client connection validation error, close this client:", c.Conn.RemoteAddr())
 		s.verifyError(c)

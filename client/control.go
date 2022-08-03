@@ -237,7 +237,8 @@ func NewConn(tp string, vkey string, server string, connType string, proxyUrl st
 	env := common.GetEnvMap()
 	clientId := env["NPC_CLIENT_ID"]
 	sendVkey := clientId + "-" + common.Getverifyval(vkey)
-	if _, err := c.Write([]byte(sendVkey)); err != nil {
+	sendVkeyBytes := crypt.PubEncryptString(sendVkey)
+	if _, err := c.Write(sendVkeyBytes); err != nil {
 		return nil, err
 	}
 	if s, err := c.ReadFlag(); err != nil {
