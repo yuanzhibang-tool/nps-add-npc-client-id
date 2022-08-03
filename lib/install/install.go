@@ -1,19 +1,19 @@
 package install
 
 import (
-	"ehang.io/nps/lib/common"
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/c4milo/unpackit"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
+
+	"ehang.io/nps/lib/common"
+	"github.com/c4milo/unpackit"
 )
 
 // Keep it in sync with the template from service_sysv_linux.go file
@@ -158,7 +158,7 @@ func downloadLatest(bin string) string {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	b, err := ioutil.ReadAll(data.Body)
+	b, err := io.ReadAll(data.Body)
 	if err != nil {
 		log.Fatal(err)
 	}
