@@ -40,3 +40,5 @@ CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build -ldflags "-s -w -extldflags -sta
 CGO_ENABLED=0 GOOS=darwin GOARCH=arm64 go build -ldflags "-s -w -extldflags -static -extldflags -static" -o ./dist/npc/darwin_arm64_client ./cmd/npc/npc.go
 
 chmod 777 -R ./dist/npc
+
+cd dist && tar -czvf ./npc.tar.gz ./npc && cd ..
