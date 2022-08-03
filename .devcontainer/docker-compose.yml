@@ -1,10 +1,7 @@
 version: '3.2'
 services:
-  nps-dev:
+  npc-dev:
     build: .
-    ports:
-      - 8024:8024
-      - 80:80
     volumes:
       - ..:/home/developer/NPS
       - /var/run/docker.sock:/var/run/docker.sock

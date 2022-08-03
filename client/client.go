@@ -3,12 +3,14 @@ package client
 import (
 	"bufio"
 	"bytes"
-	"ehang.io/nps-mux"
 	"net"
 	"net/http"
+	"os"
 	"strconv"
 	"sync"
 	"time"
+
+	nps_mux "ehang.io/nps-mux"
 
 	"github.com/astaxie/beego/logs"
 	"github.com/xtaci/kcp-go"
@@ -60,14 +62,20 @@ retry:
 	NowStatus = 0
 	c, err := NewConn(s.bridgeConnType, s.vKey, s.svrAddr, common.WORK_MAIN, s.proxyUrl)
 	if err != nil {
-		logs.Error("The connection server failed and will be reconnected in five seconds, error", err.Error())
-		time.Sleep(time.Second * 5)
-		goto retry
+			// logs.Error("The connection server failed and will be reconnected in five seconds, error", err.Error())
+			logs.Error("The connection server failed,please check if the host has enough flow, please try again or feedback to the developer, error", err.Error())
+			// !链接错误后退出重新连接
+			os.Exit(1)
+			// time.Sleep(time.Second * 5)
+			goto retry
 	}
 	if c == nil {
-		logs.Error("Error data from server, and will be reconnected in five seconds")
-		time.Sleep(time.Second * 5)
-		goto retry
+			// !链接错误后退出重新连接
+			logs.Error("Error data from server,please check if the host has enough flow, please try again or feedback to the developer, error")
+			os.Exit(1)
+			// logs.Error("Error data from server, and will be reconnected in five seconds")
+			// time.Sleep(time.Second * 5)
+			goto retry
 	}
 	logs.Info("Successful connection with server %s", s.svrAddr)
 	//monitor the connection

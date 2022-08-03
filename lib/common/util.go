@@ -2,14 +2,12 @@ package common
 
 import (
 	"bytes"
-	"ehang.io/nps/lib/version"
 	"encoding/base64"
 	"encoding/binary"
 	"errors"
 	"fmt"
 	"html/template"
 	"io"
-	"io/ioutil"
 	"net"
 	"net/http"
 	"os"
@@ -17,6 +15,8 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+
+	"ehang.io/nps/lib/version"
 
 	"ehang.io/nps/lib/crypt"
 )
@@ -130,7 +130,7 @@ func ReadAllFromFile(filePath string) ([]byte, error) {
 		return nil, err
 	}
 	defer f.Close()
-	return ioutil.ReadAll(f)
+	return io.ReadAll(f)
 }
 
 // FileExists reports whether the named file or directory exists.
@@ -416,7 +416,7 @@ func GetExternalIp() string {
 		return ""
 	}
 	defer resp.Body.Close()
-	content, _ := ioutil.ReadAll(resp.Body)
+	content, _ := io.ReadAll(resp.Body)
 	externalIp = string(content)
 	return externalIp
 }

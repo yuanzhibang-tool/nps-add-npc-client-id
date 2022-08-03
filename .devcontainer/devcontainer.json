@@ -1,9 +1,9 @@
 {
-    "name": "NPS-DEV",
+    "name": "npc-client-DEV",
     "dockerComposeFile": "docker-compose.yml",
-    "service": "nps-dev",
+    "service": "npc-dev",
     "runServices": [
-        "nps-dev"
+        "npc-dev"
     ],
     "workspaceFolder": "/home/developer/NPS",
     "overrideCommand": false,
